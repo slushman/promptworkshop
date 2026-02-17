@@ -1,0 +1,90 @@
+---
+import BrochureLayout from '../../layouts/BrochureLayout.astro';
+import BrochureWhatYouGet from '../../components/brochure/BrochureWhatYouGet.astro';
+import BrochureTopicsList from '../../components/brochure/BrochureTopicsList.astro';
+import BrochureExercises from '../../components/brochure/BrochureExercises.astro';
+import BrochureCallout from '../../components/brochure/BrochureCallout.astro';
+import BrochureDeliveryDetails from '../../components/brochure/BrochureDeliveryDetails.astro';
+import BrochurePricing from '../../components/brochure/BrochurePricing.astro';
+import BrochureAbout from '../../components/brochure/BrochureAbout.astro';
+import BrochureCTA from '../../components/brochure/BrochureCTA.astro';
+---
+
+<BrochureLayout
+  title="1 Hour Workshop: AI Foundations & RISEN Framework"
+  description="Transform your organization's relationship with AI in just one hour with the RISEN™ framework"
+>
+  <div slot="title">
+    1 Hour Workshop
+    <div class="text-2xl sm:text-3xl font-medium text-white/95 mt-4">
+      AI Foundations & RISEN Framework
+    </div>
+  </div>
+
+  <BrochureWhatYouGet
+    items={[
+      "Breakthrough the barriers preventing AI adoption in your school",
+      "Master the RISEN™ framework for effective AI communication",
+      "Hands-on practice with immediate, practical results",
+      'Clear understanding of AI as your "hyper-intelligent assistant"',
+    ]}
+  />
+
+  <div class="grid md:grid-cols-2 gap-8 mb-12">
+    <BrochureTopicsList
+      items={[
+        "How to think about AI (moving beyond the hype)",
+        "Communication skills for AI (it's not coding - it's talking)",
+        "The RISEN™ framework: Role, Instruction, Steps, End Goal, Narrowing",
+        "Live exercises building prompts step-by-step",
+      ]}
+    />
+
+    <BrochureExercises
+      blocks={[
+        {
+          title: "Progressive Prompting Exercise:",
+          description: "Hands-on demonstration where attendees build increasingly sophisticated prompts using each element of RISEN™, witnessing real-time improvement from generic to professional output",
+        },
+      ]}
+    />
+  </div>
+
+  <BrochureCallout
+    quote="AI will be useful for my job and I should embrace it. I have a practical framework I can use immediately."
+  />
+
+  <BrochureDeliveryDetails
+    sections={[
+      {
+        title: "Format",
+        icon: "people",
+        items: [
+          "50-70% hands-on exercises (AI is a skill, not theory)",
+          "Small table seating ideal for collaboration",
+          "In-person preferred for optimal facilitation",
+          "Online delivery available with adapted exercises",
+        ],
+      },
+      {
+        title: "Materials Provided",
+        icon: "document",
+        items: [
+          "RISEN™ framework handout pack",
+          "Recordings available",
+        ],
+      },
+    ]}
+  />
+
+  <BrochurePricing
+    benchmark={{ amount: "$50", unit: "/attendee/hour" }}
+    example="1 Hour Workshop, 20 attendees"
+    examplePrice="$1,000"
+    disclaimer="Discounted rates available for charities and non-profits. Pricing varies based on attendee count, customization level, and industry."
+  />
+
+  <BrochureAbout />
+
+  <BrochureCTA />
+</BrochureLayout>

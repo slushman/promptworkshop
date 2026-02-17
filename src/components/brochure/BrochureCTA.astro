@@ -1,0 +1,23 @@
+---
+interface Props {
+  title?: string;
+}
+
+const {
+  title = 'Contact',
+} = Astro.props;
+const email = "chris@slushman.com";
+---
+<section>
+  <div class="bg-gradient-to-br from-brand-primary-600 to-brand-primary-700 rounded-2xl p-8 md:p-10 shadow-xl text-center">
+    <h2 class="text-3xl font-bold text-white mb-4">{title}</h2>
+    <div class="mb-6">
+      <a href={`mailto:${email}`} class="text-2xl font-bold text-white hover:text-brand-accent-300 transition-colors">
+        {email}
+      </a>
+    </div>
+    <p class="text-white/95 text-lg italic">
+      Ready to transform your organization's relationship with AI? Let's discuss how this workshop can benefit your team.
+    </p>
+  </div>
+</section>

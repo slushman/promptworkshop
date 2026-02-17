@@ -1,0 +1,99 @@
+---
+import BrochureLayout from '../../layouts/BrochureLayout.astro';
+import BrochureWhatYouGet from '../../components/brochure/BrochureWhatYouGet.astro';
+import BrochureTopicsList from '../../components/brochure/BrochureTopicsList.astro';
+import BrochureExercises from '../../components/brochure/BrochureExercises.astro';
+import BrochureCallout from '../../components/brochure/BrochureCallout.astro';
+import BrochureDeliveryDetails from '../../components/brochure/BrochureDeliveryDetails.astro';
+import BrochurePricing from '../../components/brochure/BrochurePricing.astro';
+import BrochureAbout from '../../components/brochure/BrochureAbout.astro';
+import BrochureCTA from '../../components/brochure/BrochureCTA.astro';
+---
+
+<BrochureLayout
+  title="1.5 Hour Workshop: AI Mastery & Tool Selection"
+  description=""
+>
+  <div slot="title">
+    1.5 Hour Workshop
+    <div class="text-2xl sm:text-3xl font-medium text-white/95 mt-4">
+      AI Mastery & Tool Selection
+    </div>
+  </div>
+
+  <BrochureWhatYouGet
+    items={[
+      "Master the RISEN™ framework for effective AI communication",
+      "Understanding of AI limitations and how to work with them",
+      "Knowledge of which AI tools to use for different tasks",
+      "Confidence in choosing the right AI for your specific needs",
+    ]}
+  />
+
+  <div class="grid md:grid-cols-2 gap-8 mb-12">
+    <BrochureTopicsList
+      items={[
+        "How to think about AI as your intelligent assistant",
+        "Complete RISEN™ framework mastery with hands-on practice",
+        "AI limitations and how to handle them (hallucinations, bias, generic output)",
+        "Choosing the right AI tool for different jobs",
+        "Understanding the current AI landscape and future developments",
+      ]}
+    />
+
+    <BrochureExercises
+      blocks={[
+        {
+          title: "Progressive Prompting Exercise",
+          description: "Complete RISEN™ framework demonstration with real-time improvement",
+        },
+        {
+          title: "Limitations Discovery",
+          description: "Pair work identifying potential AI pitfalls and dangerous use cases",
+        },
+        {
+          title: "Tool Comparison Workshop",
+          description: "Hands-on exploration of different AI platforms and their strengths",
+        },
+      ]}
+    />
+  </div>
+
+  <BrochureCallout
+    quote="I can communicate effectively with AI using RISEN™, I understand AI's limitations, and I know which tools to use for different tasks."
+  />
+
+  <BrochureDeliveryDetails
+    sections={[
+      {
+        title: "Format",
+        icon: "people",
+        items: [
+          "50-70% hands-on exercises (AI is a skill, not theory)",
+          "Small table seating ideal for collaboration",
+          "In-person preferred for optimal facilitation",
+          "Online delivery available with adapted exercises",
+        ],
+      },
+      {
+        title: "Materials Provided",
+        icon: "document",
+        items: [
+          "Handout pack",
+          "Recordings available",
+        ],
+      },
+    ]}
+  />
+
+  <BrochurePricing
+    benchmark={{ amount: "$50", unit: "/attendee/hour" }}
+    example="1.5-Hour Workshop, 20 attendees"
+    examplePrice="$1,500"
+    disclaimer="Discounted rates available for charities and non-profits. Pricing varies based on attendee count, customization level, and industry."
+  />
+
+  <BrochureAbout />
+
+  <BrochureCTA />
+</BrochureLayout>

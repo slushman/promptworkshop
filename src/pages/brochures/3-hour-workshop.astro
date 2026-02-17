@@ -1,0 +1,110 @@
+---
+import BrochureLayout from '../../layouts/BrochureLayout.astro';
+import BrochureWhatYouGet from '../../components/brochure/BrochureWhatYouGet.astro';
+import BrochureTopicsList from '../../components/brochure/BrochureTopicsList.astro';
+import BrochureExercises from '../../components/brochure/BrochureExercises.astro';
+import BrochureCallout from '../../components/brochure/BrochureCallout.astro';
+import BrochureDeliveryDetails from '../../components/brochure/BrochureDeliveryDetails.astro';
+import BrochurePricing from '../../components/brochure/BrochurePricing.astro';
+import BrochureAbout from '../../components/brochure/BrochureAbout.astro';
+import BrochureCTA from '../../components/brochure/BrochureCTA.astro';
+---
+
+<BrochureLayout
+  title="3 Hour Workshop: Complete AI Transformation"
+  description=""
+>
+  <div slot="title">
+    3 Hour Workshop
+    <div class="text-2xl sm:text-3xl font-medium text-white/95 mt-4">
+      Complete AI Transformation
+    </div>
+  </div>
+
+  <BrochureWhatYouGet
+    items={[
+      "Comprehensive AI foundation and strategic implementation framework",
+      "Custom prompt library built collaboratively for your organization",
+      "Understanding of AI deployment levels from basic to advanced automation",
+      "Complete organizational roadmap for sustainable AI adoption",
+      "Privacy and safety protocols for enterprise AI use",
+    ]}
+  />
+
+  <div class="grid md:grid-cols-2 gap-8 mb-12">
+    <BrochureTopicsList
+      items={[
+        "Complete RISEN™ framework mastery with advanced applications",
+        "Strategic task identification and risk management methodology",
+        "AI safety, privacy considerations, and enterprise policies",
+        "Collaborative prompt library development process",
+        "Levels of AI deployment: from basic prompts to advanced automation and agents",
+        "Long-term AI strategy and organizational transformation roadmap",
+      ]}
+    />
+
+    <BrochureExercises
+      blocks={[
+        {
+          title: "RISEN™ Framework Mastery",
+          description: "Progressive prompt building with real-time results",
+        },
+        {
+          title: "Strategic Task Planning",
+          description: "Complete quadrant-based prioritization workshop",
+        },
+        {
+          title: "Micro-Hackathon",
+          description: "Collaborative prompt library development",
+    // - Task selection using strategic framework
+    // - Custom RISEN™ prompt creation with parameters
+    // - Testing, iteration, and refinement process
+    // - Group presentation of working solutions
+        },
+        {
+          title: "Privacy & Safety Workshop:**",
+          description: "Hands-on exploration of enterprise AI settings and policies",
+        },
+      ]}
+    />
+  </div>
+
+  <BrochureCallout
+    quote="Our team has working AI prompts, a clear implementation roadmap, understands safety protocols, and knows our path from basic usage to advanced AI deployment."
+  />
+
+  <BrochureDeliveryDetails
+    sections={[
+      {
+        title: "Format",
+        icon: "people",
+        items: [
+          "60-70% hands-on exercises (AI is a skill, not theory)",
+          "Small table seating ideal for collaboration",
+          "In-person preferred for optimal facilitation",
+          "Online delivery available with adapted exercises",
+          "Includes strategic break for reflection and networking",
+        ],
+      },
+      {
+        title: "Materials Provided",
+        icon: "document",
+        items: [
+          "Handout pack",
+          "Recordings available",
+        ],
+      },
+    ]}
+  />
+
+  <BrochurePricing
+    benchmark={{ amount: "$50", unit: "/attendee/hour" }}
+    example="3-Hour Workshop, 20 attendees"
+    examplePrice="$3,000"
+    disclaimer="Discounted rates available for charities and non-profits. Pricing varies based on attendee count, customization level, and industry."
+  />
+
+  <BrochureAbout />
+
+  <BrochureCTA />
+</BrochureLayout>

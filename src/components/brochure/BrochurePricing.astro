@@ -1,0 +1,47 @@
+---
+interface Props {
+  title?: string;
+  benchmark: {
+    amount: string;
+    unit: string;
+  };
+  example?: string;
+  examplePrice?: string;
+  disclaimer?: string;
+}
+
+const {
+  title = 'Pricing',
+  benchmark,
+  example,
+  examplePrice,
+  disclaimer,
+} = Astro.props;
+---
+
+<section class="mb-12">
+  <div class="bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-2xl p-8 md:p-10 shadow-xl">
+    <h2 class="text-3xl font-bold text-white mb-6">{title}</h2>
+
+    <div class="mb-6">
+      <div class="text-white/80 text-lg mb-2">Benchmark:</div>
+      <div class="text-4xl font-bold text-white">
+        {benchmark.amount}<span class="text-2xl font-normal text-white/80">{benchmark.unit}</span>
+      </div>
+    </div>
+
+    {example && examplePrice && (
+      <div class="bg-white/10 rounded-lg p-6 mb-6">
+        <p class="text-white text-lg">
+          <span class="font-bold">Example:</span> {example}: <span class="text-brand-accent-400 font-bold">{examplePrice}</span>
+        </p>
+      </div>
+    )}
+
+    {disclaimer && (
+      <p class="text-white/80 text-sm italic">
+        {disclaimer}
+      </p>
+    )}
+  </div>
+</section>

@@ -1,0 +1,41 @@
+---
+interface Props {
+  title?: string;
+}
+
+const {
+  title = 'About Chris Wilcoxson',
+} = Astro.props;
+---
+
+<section class="mb-12">
+  <div class="bg-white rounded-xl p-8 md:p-10 shadow-lg border-2 border-neutral-200">
+    <h2 class="text-3xl font-bold text-neutral-900 mb-6">{title}</h2>
+    <ul class="space-y-3 text-neutral-700 text-lg">
+      <li class="flex items-start gap-3">
+        <svg class="w-6 h-6 flex-shrink-0 mt-1 text-brand-primary-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+        <span>BBA from Belmont University</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-6 h-6 flex-shrink-0 mt-1 text-brand-primary-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+        <span>7+ years as Senior Software Engineer with Pushpay</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-6 h-6 flex-shrink-0 mt-1 text-brand-primary-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+        <span>Led teams building features using AI</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <svg class="w-6 h-6 flex-shrink-0 mt-1 text-brand-primary-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+        <span>Earned the Certified AI Practitioner certification from Amazon Web Services</span>
+      </li>
+    </ul>
+  </div>
+</section>

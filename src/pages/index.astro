@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import BookingButton from '../components/BookingButton.astro';
+---
+
+<BaseLayout
+  title="AI Workshops for Organizations | promptwork.shop"
+  description="Transform your organization with expert-led AI workshops. Learn to leverage AI effectively through hands-on training tailored to your industry."
+>
+  <!-- Hero Section -->
+  <Hero
+    headline="If AI Feels Important But Unclear, You're Not Alone"
+    subheadline="Most people are somewhere between curiosity and confusion. Let's fix that."
+  />
+
+  <!-- Normalize Section -->
+  <section class="section-padding bg-neutral-50">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+          You're Not Behind, You're <span class="text-brand-primary-600">Normal</span>
+        </h2>
+
+        <p class="text-xl text-neutral-600 mb-8 leading-relaxed">
+          Somewhere between the hype, the panic, and the third "AI strategy" meeting that produced no strategy, most people landed in the same place: confused but nodding along.
+        </p>
+
+        <p class="text-xl text-neutral-600 leading-relaxed">
+          The ones who figure it out aren't smarter. They just started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Real Problem Section -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl md:text-h2 font-bold text-neutral-900 mb-6 text-center">
+          The Problem Isn't Lack of Information
+        </h2>
+
+        <p class="text-xl text-neutral-600 mb-12 text-center max-w-3xl mx-auto leading-relaxed">
+          There's too much information. What you actually need is direction and hands-on practice.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl p-6 border border-neutral-200">
+            <h3 class="text-xl font-semibold text-neutral-900 mb-3">Everyone Has Different Advice</h3>
+            <p class="text-neutral-600">
+              The vendors want to sell you platforms. The consultants want to sell you strategies. Meanwhile, you're trying to figure out what to actually do.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-neutral-200">
+            <h3 class="text-xl font-semibold text-neutral-900 mb-3">The Jargon Is Overwhelming</h3>
+            <p class="text-neutral-600">
+              "LLM," "agents," "hallucinations;" you've heard the buzzwords. But turning them into something you can actually use? That's the hard part.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-neutral-200">
+            <h3 class="text-xl font-semibold text-neutral-900 mb-3">Generic Playbooks Don't Work</h3>
+            <p class="text-neutral-600">
+              Every industry has different constraints and needs. You don't need a one-size-fits-all solution. You need something that works in your world.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-neutral-200">
+            <h3 class="text-xl font-semibold text-neutral-900 mb-3">Demos Don't Translate to Reality</h3>
+            <p class="text-neutral-600">
+              You've seen the cool prototypes. But turning a demo into something useful day-to-day? That's where most "AI initiatives" quietly disappear.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Changes Section -->
+  <section class="section-padding bg-neutral-50">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl md:text-h2 font-bold text-neutral-900 mb-6 text-center">
+          What Changes After a Workshop
+        </h2>
+
+        <p class="text-lg text-neutral-600 mb-12 text-center max-w-3xl mx-auto">
+          A workshop won't solve every AI challenge. But it will give you direction — and the confidence to actually start.
+        </p>
+
+        <div class="space-y-4">
+          <div class="flex items-start gap-4 bg-white rounded-lg p-6 border border-neutral-200">
+            <div class="w-8 h-8 bg-brand-primary-500 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <p class="text-neutral-800 text-lg">You move from "we should probably do something with AI" to "we actually know where to start"</p>
+          </div>
+
+          <div class="flex items-start gap-4 bg-white rounded-lg p-6 border border-neutral-200">
+            <div class="w-8 h-8 bg-brand-primary-500 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <p class="text-neutral-800 text-lg">You stop feeling intimidated and start feeling capable</p>
+          </div>
+
+          <div class="flex items-start gap-4 bg-white rounded-lg p-6 border border-neutral-200">
+            <div class="w-8 h-8 bg-brand-primary-500 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <p class="text-neutral-800 text-lg">You learn through hands-on practice, not theory or slide decks</p>
+          </div>
+
+          <div class="flex items-start gap-4 bg-white rounded-lg p-6 border border-neutral-200">
+            <div class="w-8 h-8 bg-brand-primary-500 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <p class="text-neutral-800 text-lg">You get a practical framework you can actually remember and use on Monday morning</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Served Section -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl md:text-h2 font-bold text-neutral-900 mb-6 text-center">
+          Who This Is For
+        </h2>
+
+        <p class="text-lg text-neutral-600 mb-12 text-center">
+          If AI feels important but unclear, you're in the right place.
+        </p>
+
+        <!-- Industry Cards -->
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Education -->
+          <a href="/education" class="block transition-transform hover:scale-105">
+            <div class="bg-brand-primary-50 border-2 border-brand-primary-500 rounded-xl p-8 h-full">
+              <h3 class="text-2xl font-semibold text-neutral-900 mb-3">
+                Educators & Schools
+              </h3>
+              <p class="text-neutral-700">
+                Teachers, administrators, and districts trying to make sense of AI without adding another thing to the pile.
+              </p>
+            </div>
+          </a>
+
+          <!-- Teams -->
+          <div class="bg-neutral-50 border-2 border-neutral-200 rounded-xl p-8 opacity-75">
+            <h3 class="text-2xl font-semibold text-neutral-900 mb-3">
+              Teams Who Need Practical Wins
+            </h3>
+            <p class="text-neutral-600">
+              Organizations that don't need another keynote. You need to know how AI fits into your work this week, not next quarter.
+            </p>
+          </div>
+
+          <!-- Leaders -->
+          <div class="bg-neutral-50 border-2 border-neutral-200 rounded-xl p-8 opacity-75">
+            <h3 class="text-2xl font-semibold text-neutral-900 mb-3">
+              Leaders Figuring It Out
+            </h3>
+            <p class="text-neutral-600">
+              You've been asked to "have an AI strategy." You're smart enough to know you don't have one yet. That's the starting line.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="relative section-padding overflow-hidden bg-gradient-to-br from-brand-accent-500 via-brand-accent-600 to-brand-primary-600">
+    <!-- Decorative background -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.1),transparent_50%)]"></div>
+
+    <div class="container-custom relative">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+          Ready to Start?
+        </h2>
+        <p class="text-xl md:text-2xl mb-10 text-white/95 leading-relaxed">
+          Book a conversation. We'll talk about your situation — your challenges, your constraints, your goals — and figure out what a workshop would look like for you.
+        </p>
+        <p class="text-xl md:text-2xl mb-10 text-white/95 leading-relaxed">
+          No pressure. No sales pitch. Just an honest discussion about whether we can help.
+        </p>
+        <BookingButton
+          variant="secondary"
+          size="lg"
+          href="mailto:book@promptwork.shop?subject=Workshop%20Inquiry"
+          text="Book A Workshop"
+          class="bg-white text-brand-primary-600 hover:bg-neutral-50 border-0 shadow-xl hover:shadow-2xl"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import IndustryHero from '../components/IndustryHero.astro';
+import AboutSection from '../components/AboutSection.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  headline: string;
+  subheadline?: string;
+  industry: string;
+}
+
+const { title, description, headline, subheadline, industry } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Industry-specific Hero -->
+  <IndustryHero headline={headline} subheadline={subheadline} industry={industry} />
+
+  <!-- Page Content (slot for industry-specific content) -->
+  <slot />
+</BaseLayout>

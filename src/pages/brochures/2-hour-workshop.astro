@@ -1,0 +1,103 @@
+---
+import BrochureLayout from '../../layouts/BrochureLayout.astro';
+import BrochureWhatYouGet from '../../components/brochure/BrochureWhatYouGet.astro';
+import BrochureTopicsList from '../../components/brochure/BrochureTopicsList.astro';
+import BrochureExercises from '../../components/brochure/BrochureExercises.astro';
+import BrochureCallout from '../../components/brochure/BrochureCallout.astro';
+import BrochureDeliveryDetails from '../../components/brochure/BrochureDeliveryDetails.astro';
+import BrochurePricing from '../../components/brochure/BrochurePricing.astro';
+import BrochureAbout from '../../components/brochure/BrochureAbout.astro';
+import BrochureCTA from '../../components/brochure/BrochureCTA.astro';
+---
+
+<BrochureLayout
+  title="2 Hour Workshop: Strategic AI Implementation"
+  description=""
+>
+  <div slot="title">
+    2 Hour Workshop
+    <div class="text-2xl sm:text-3xl font-medium text-white/95 mt-4">
+      Strategic AI Implementation
+    </div>
+  </div>
+
+  <BrochureWhatYouGet
+    items={[
+      "Master the RISEN™ framework for professional AI communication",
+      "Strategic framework for identifying which tasks to automate",
+      "Risk assessment methodology for safe AI deployment",
+      "Clear action plan for organizational AI implementation",
+    ]}
+  />
+
+  <div class="grid md:grid-cols-2 gap-8 mb-12">
+    <BrochureTopicsList
+      items={[
+        "AI foundations and the RISEN™ framework for effective prompting",
+        "AI tool selection and understanding limitations",
+        "Task prioritization using the Time Saving vs Risk quadrant methodology",
+        "Strategic approach to AI implementation across departments",
+        "Creating sustainable AI adoption processes",
+      ]}
+    />
+
+    <BrochureExercises
+      blocks={[
+        {
+          title: "RISEN™ Framework Mastery",
+          description: "Complete hands-on prompt building exercise",
+        },
+        {
+          title: "Strategic Task Audit",
+          description: "Groups collaboratively identify and categoriZe all weekly tasks",
+        },
+        {
+          title: "Risk vs Time-Saving Assessment",
+          description: "Interactive workshop using quadrant methodology to prioritize AI implementation",
+        },
+        {
+          title: "Action Planning",
+          description: "Define immediate next steps for safe AI deployment",
+        },
+      ]}
+    />
+  </div>
+
+  <BrochureCallout
+    quote="We have a clear methodology for identifying which tasks should use AI, which shouldn't, and how to implement safely. Our next steps are defined."
+  />
+
+  <BrochureDeliveryDetails
+    sections={[
+      {
+        title: "Format",
+        icon: "people",
+        items: [
+          "50-70% hands-on exercises (AI is a skill, not theory)",
+          "Small table seating ideal for collaboration",
+          "In-person preferred for optimal facilitation",
+          "Online delivery available with adapted exercises",
+        ],
+      },
+      {
+        title: "Materials Provided",
+        icon: "document",
+        items: [
+          "Handout pack",
+          "Recordings available",
+        ],
+      },
+    ]}
+  />
+
+  <BrochurePricing
+    benchmark={{ amount: "$50", unit: "/attendee/hour" }}
+    example="2-Hour Workshop, 20 attendees"
+    examplePrice="$2,000"
+    disclaimer="Discounted rates available for charities and non-profits. Pricing varies based on attendee count, customization level, and industry."
+  />
+
+  <BrochureAbout />
+
+  <BrochureCTA />
+</BrochureLayout>
