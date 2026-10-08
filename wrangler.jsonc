@@ -18,6 +18,10 @@
 			"remote": true
 		}
 	],
+	"vars": {
+		"ACCESS_TEAM_DOMAIN": "REPLACE_WITH_TEAM.cloudflareaccess.com",
+		"ACCESS_AUD": "c3a6d1acf67ab7c3bdc4ff7520e94eb01757113979e5e012014f0d8869b62c16"
+	},
 	"observability": {
 		"enabled": true
 	}

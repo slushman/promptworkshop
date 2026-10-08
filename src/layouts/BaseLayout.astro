@@ -7,12 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  noindex?: boolean;
 }
 
 const {
   title = 'AI Workshops for Organizations | promptwork.shop',
   description = 'Transform your organization with expert-led AI workshops. Learn to leverage AI effectively through hands-on training tailored to your industry.',
   image = '/og-image.jpg',
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -26,6 +28,7 @@ const socialImage = new URL(image, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>

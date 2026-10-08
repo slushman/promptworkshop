@@ -33,7 +33,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   }
 
   try {
-    await locals.runtime.env.DB.prepare(
+    await locals.runtime.env.promptworkshop.prepare(
       'INSERT INTO testimonials (name, role, body, can_publish) VALUES (?, ?, ?, ?)'
     )
       .bind(name, role || null, body, canPublish)
