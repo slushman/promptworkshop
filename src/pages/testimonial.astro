@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const inputClass =
+  'w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-neutral-900 focus:border-brand-primary-500 focus:outline-none focus:ring-2 focus:ring-brand-primary-200';
+---
+
+<BaseLayout
+  title="Share Your Experience | promptwork.shop"
+  description="Tell us about your experience with a promptwork.shop AI workshop."
+>
+  <section class="section-padding bg-neutral-50">
+    <div class="container-custom">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4 text-center">
+          Share Your Experience
+        </h1>
+        <p class="text-lg text-neutral-600 mb-10 text-center">
+          Attended a workshop? We'd love to hear what it was like.
+        </p>
+
+        <div
+          id="form-status"
+          role="status"
+          class="hidden mb-6 rounded-lg p-4 text-center"
+        >
+        </div>
+
+        <form
+          id="testimonial-form"
+          method="POST"
+          action="/api/testimonial"
+          class="bg-white rounded-xl border border-neutral-200 p-6 sm:p-8 space-y-6"
+        >
+          <div>
+            <label for="name" class="block font-medium text-neutral-900 mb-2">Your name</label>
+            <input id="name" name="name" type="text" required maxlength="100" class={inputClass} />
+          </div>
+
+          <div>
+            <label for="role" class="block font-medium text-neutral-900 mb-2">
+              Role / organization <span class="text-neutral-500 font-normal">(optional)</span>
+            </label>
+            <input id="role" name="role" type="text" maxlength="150" class={inputClass} />
+          </div>
+
+          <div>
+            <label for="body" class="block font-medium text-neutral-900 mb-2">Your testimonial</label>
+            <textarea id="body" name="body" required maxlength="2000" rows="6" class={inputClass}
+            ></textarea>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <input
+              id="can_publish"
+              name="can_publish"
+              type="checkbox"
+              class="mt-1 h-4 w-4 rounded border-neutral-300"
+            />
+            <label for="can_publish" class="text-neutral-700">
+              You may publish my name and testimonial on promptwork.shop.
+            </label>
+          </div>
+
+          <!-- Honeypot: hidden from people, tempting to bots -->
+          <div class="absolute -left-[9999px]" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-brand-primary-600 px-6 py-3 font-semibold text-white hover:bg-brand-primary-700 focus:outline-none focus:ring-2 focus:ring-brand-primary-300 disabled:opacity-60"
+          >
+            Submit testimonial
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('testimonial-form') as HTMLFormElement;
+    const status = document.getElementById('form-status') as HTMLElement;
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+    const show = (ok: boolean, message: string) => {
+      status.textContent = message;
+      status.className = `mb-6 rounded-lg p-4 text-center ${
+        ok ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
+      }`;
+      status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    const params = new URLSearchParams(location.search);
+    if (params.has('thanks')) show(true, 'Thank you! Your testimonial has been received.');
+    if (params.has('error')) show(false, 'Something went wrong. Please try again.');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      button.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        const data = await res.json();
+        show(data.ok, data.message);
+        if (data.ok) form.reset();
+      } catch {
+        show(false, 'Something went wrong. Please try again.');
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</BaseLayout>
