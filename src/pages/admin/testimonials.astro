@@ -17,6 +17,7 @@ interface Testimonial {
   id: number;
   name: string;
   role: string | null;
+  organization: string | null;
   body: string;
   can_publish: number;
   approved: number;
@@ -79,6 +80,7 @@ Astro.response.headers.set('Cache-Control', 'no-store');
                   <div>
                     <span class="font-semibold text-neutral-900">{t.name}</span>
                     {t.role && <span class="text-neutral-600"> · {t.role}</span>}
+                    {t.organization && <span class="text-neutral-600"> · {t.organization}</span>}
                   </div>
                   <time class="text-sm text-neutral-500">{t.created_at} UTC</time>
                 </div>

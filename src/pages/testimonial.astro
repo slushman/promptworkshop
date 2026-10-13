@@ -41,13 +41,26 @@ const inputClass =
 
           <div>
             <label for="role" class="block font-medium text-neutral-900 mb-2">
-              Role / organization <span class="text-neutral-500 font-normal">(optional)</span>
+              Role <span class="text-neutral-500 font-normal">(optional)</span>
             </label>
             <input id="role" name="role" type="text" maxlength="150" class={inputClass} />
           </div>
 
           <div>
-            <label for="body" class="block font-medium text-neutral-900 mb-2">Your testimonial</label>
+            <label for="organization" class="block font-medium text-neutral-900 mb-2">
+              Organization <span class="text-neutral-500 font-normal">(optional)</span>
+            </label>
+            <input
+              id="organization"
+              name="organization"
+              type="text"
+              maxlength="150"
+              class={inputClass}
+            />
+          </div>
+
+          <div>
+            <label for="body" class="block font-medium text-neutral-900 mb-2">Feedback</label>
             <textarea id="body" name="body" required maxlength="2000" rows="6" class={inputClass}
             ></textarea>
           </div>
@@ -60,7 +73,7 @@ const inputClass =
               class="mt-1 h-4 w-4 rounded border-neutral-300"
             />
             <label for="can_publish" class="text-neutral-700">
-              You may publish my name and testimonial on promptwork.shop.
+              You may publish my name and feedback on promptwork.shop.
             </label>
           </div>
 
@@ -74,7 +87,7 @@ const inputClass =
             type="submit"
             class="w-full rounded-lg bg-brand-primary-600 px-6 py-3 font-semibold text-white hover:bg-brand-primary-700 focus:outline-none focus:ring-2 focus:ring-brand-primary-300 disabled:opacity-60"
           >
-            Submit testimonial
+            Submit feedback
           </button>
         </form>
       </div>
@@ -95,7 +108,7 @@ const inputClass =
     };
 
     const params = new URLSearchParams(location.search);
-    if (params.has('thanks')) show(true, 'Thank you! Your testimonial has been received.');
+    if (params.has('thanks')) show(true, 'Thank you! Your feedback has been received.');
     if (params.has('error')) show(false, 'Something went wrong. Please try again.');
 
     form.addEventListener('submit', async (e) => {

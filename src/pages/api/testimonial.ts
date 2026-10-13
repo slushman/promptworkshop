@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-const LIMITS = { name: 100, role: 150, body: 2000 };
+const LIMITS = { name: 100, role: 150, organization: 150, body: 2000 };
 
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), {
@@ -24,24 +24,30 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const name = String(form.get('name') ?? '').trim();
   const role = String(form.get('role') ?? '').trim();
+  const organization = String(form.get('organization') ?? '').trim();
   const body = String(form.get('body') ?? '').trim();
   const canPublish = form.get('can_publish') ? 1 : 0;
 
-  if (!name || !body) return respond(false, 'Please provide your name and testimonial.');
-  if (name.length > LIMITS.name || role.length > LIMITS.role || body.length > LIMITS.body) {
+  if (!name || !body) return respond(false, 'Please provide your name and feedback.');
+  if (
+    name.length > LIMITS.name ||
+    role.length > LIMITS.role ||
+    organization.length > LIMITS.organization ||
+    body.length > LIMITS.body
+  ) {
     return respond(false, 'One of your answers is too long.');
   }
 
   try {
     await locals.runtime.env.promptworkshop.prepare(
-      'INSERT INTO testimonials (name, role, body, can_publish) VALUES (?, ?, ?, ?)'
+      'INSERT INTO testimonials (name, role, organization, body, can_publish) VALUES (?, ?, ?, ?, ?)'
     )
-      .bind(name, role || null, body, canPublish)
+      .bind(name, role || null, organization || null, body, canPublish)
       .run();
   } catch (err) {
     console.error('Failed to save testimonial', err);
     return respond(false, 'Something went wrong. Please try again.', 500);
   }
 
-  return respond(true, 'Thank you! Your testimonial has been received.');
+  return respond(true, 'Thank you! Your feedback has been received.');
 };
