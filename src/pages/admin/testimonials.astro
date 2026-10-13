@@ -20,6 +20,7 @@ interface Testimonial {
   organization: string | null;
   body: string;
   can_publish: number;
+  can_publish_name: number;
   approved: number;
   created_at: string;
 }
@@ -91,7 +92,16 @@ Astro.response.headers.set('Cache-Control', 'no-store');
                       t.can_publish ? 'bg-green-50 text-green-800' : 'bg-amber-50 text-amber-800'
                     }`}
                   >
-                    {t.can_publish ? 'OK to publish' : 'No publish permission'}
+                    {t.can_publish ? 'OK to publish feedback' : 'Do not publish feedback'}
+                  </span>
+                  <span
+                    class={`text-sm rounded-full px-3 py-1 ${
+                      t.can_publish_name
+                        ? 'bg-green-50 text-green-800'
+                        : 'bg-amber-50 text-amber-800'
+                    }`}
+                  >
+                    {t.can_publish_name ? 'OK to use name' : 'Anonymous only'}
                   </span>
                   <span class="flex-grow" />
                   <button

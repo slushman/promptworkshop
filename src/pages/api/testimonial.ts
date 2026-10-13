@@ -27,6 +27,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const organization = String(form.get('organization') ?? '').trim();
   const body = String(form.get('body') ?? '').trim();
   const canPublish = form.get('can_publish') ? 1 : 0;
+  const canPublishName = form.get('can_publish_name') ? 1 : 0;
 
   if (!name || !body) return respond(false, 'Please provide your name and feedback.');
   if (
@@ -40,9 +41,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   try {
     await locals.runtime.env.promptworkshop.prepare(
-      'INSERT INTO testimonials (name, role, organization, body, can_publish) VALUES (?, ?, ?, ?, ?)'
+      'INSERT INTO testimonials (name, role, organization, body, can_publish, can_publish_name) VALUES (?, ?, ?, ?, ?, ?)'
     )
-      .bind(name, role || null, organization || null, body, canPublish)
+      .bind(name, role || null, organization || null, body, canPublish, canPublishName)
       .run();
   } catch (err) {
     console.error('Failed to save testimonial', err);
