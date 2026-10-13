@@ -1,0 +1,35 @@
+---
+import type { PublishedTestimonial } from '../lib/testimonials';
+
+interface Props {
+  testimonials: PublishedTestimonial[];
+  class?: string;
+}
+
+const { testimonials, class: className = 'bg-white' } = Astro.props;
+---
+
+{
+  testimonials.length > 0 && (
+    <section class={`section-padding ${className}`}>
+      <div class="container-custom">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl sm:text-4xl md:text-h2 font-bold text-neutral-900 mb-12 text-center">
+            What People Are Saying
+          </h2>
+
+          <div class={`grid gap-6 ${testimonials.length > 1 ? 'md:grid-cols-2' : ''}`}>
+            {testimonials.map((t) => (
+              <figure class="bg-white rounded-xl p-6 border border-neutral-200">
+                <blockquote class="text-neutral-800 text-lg whitespace-pre-wrap">{t.body}</blockquote>
+                {t.attribution && (
+                  <figcaption class="mt-4 font-medium text-neutral-600">— {t.attribution}</figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

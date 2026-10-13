@@ -21,6 +21,7 @@ interface Testimonial {
   body: string;
   can_publish: number;
   can_publish_name: number;
+  industry: string | null;
   approved: number;
   created_at: string;
 }
@@ -102,6 +103,9 @@ Astro.response.headers.set('Cache-Control', 'no-store');
                     }`}
                   >
                     {t.can_publish_name ? 'OK to use name' : 'Anonymous only'}
+                  </span>
+                  <span class="text-sm rounded-full bg-neutral-100 px-3 py-1 text-neutral-700">
+                    {t.industry ?? 'No industry'}
                   </span>
                   <span class="flex-grow" />
                   <button

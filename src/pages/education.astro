@@ -2,10 +2,19 @@
 import { getEntry } from 'astro:content';
 import IndustryLayout from '../layouts/IndustryLayout.astro';
 import BookingButton from '../components/BookingButton.astro';
+import Testimonials from '../components/Testimonials.astro';
+import { getPublishedTestimonials } from '../lib/testimonials';
+
+export const prerender = false;
 
 const entry = await getEntry('industries', 'education');
 if (!entry) throw new Error('Education content not found');
 const { data } = entry;
+
+const testimonials = await getPublishedTestimonials(Astro.locals.runtime.env.promptworkshop, {
+  industry: 'education',
+  limit: 6,
+});
 ---
 
 <IndustryLayout
@@ -136,6 +145,8 @@ const { data } = entry;
       </section>
     )
   }
+
+  <Testimonials testimonials={testimonials} class="bg-white" />
 
   <!-- CTA Section -->
   {
