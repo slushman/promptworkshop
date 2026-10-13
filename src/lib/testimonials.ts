@@ -19,6 +19,7 @@ interface Row {
   can_publish_name: number;
 }
 
+// A random selection on every request, so repeat visitors see different ones.
 // Only approved testimonials the author agreed to publish. Name, role and
 // organization are dropped here unless the author also agreed to those, so they
 // never reach a template for anonymous testimonials.
@@ -30,7 +31,7 @@ export async function getPublishedTestimonials(
     .prepare(
       `SELECT name, role, organization, body, can_publish_name FROM testimonials
        WHERE approved = 1 AND can_publish = 1 ${industry ? 'AND industry = ?' : ''}
-       ORDER BY created_at DESC, id DESC LIMIT ?`
+       ORDER BY RANDOM() LIMIT ?`
     )
     .bind(...(industry ? [industry, limit] : [limit]))
     .all<Row>();
