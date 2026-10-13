@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { verifyAccess } from '../../lib/access';
+
+export const prerender = false;
+
+const env = Astro.locals.runtime.env;
+const email = await verifyAccess(Astro.request, env);
+if (!email) return new Response('Forbidden', { status: 403 });
+
+const filters = ['pending', 'approved', 'all'] as const;
+type Filter = (typeof filters)[number];
+const requested = Astro.url.searchParams.get('filter');
+const filter: Filter = filters.includes(requested as Filter) ? (requested as Filter) : 'pending';
+
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string | null;
+  body: string;
+  can_publish: number;
+  approved: number;
+  created_at: string;
+}
+
+const where = filter === 'pending' ? 'WHERE approved = 0' : filter === 'approved' ? 'WHERE approved = 1' : '';
+const { results } = await env.promptworkshop
+  .prepare(`SELECT * FROM testimonials ${where} ORDER BY created_at DESC, id DESC`)
+  .all<Testimonial>();
+
+const counts = await env.promptworkshop
+  .prepare('SELECT approved, COUNT(*) AS n FROM testimonials GROUP BY approved')
+  .all<{ approved: number; n: number }>();
+const pendingCount = counts.results.find((r) => r.approved === 0)?.n ?? 0;
+const approvedCount = counts.results.find((r) => r.approved === 1)?.n ?? 0;
+const tabCounts: Record<Filter, number> = {
+  pending: pendingCount,
+  approved: approvedCount,
+  all: pendingCount + approvedCount,
+};
+
+Astro.response.headers.set('Cache-Control', 'no-store');
+---
+
+<BaseLayout title="Testimonials Admin | promptwork.shop" noindex>
+  <section class="section-padding bg-neutral-50">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-3xl font-bold text-neutral-900 mb-2">Testimonials</h1>
+        <p class="text-neutral-600 mb-6">Signed in as {email}</p>
+
+        <nav class="flex gap-2 mb-8" aria-label="Filter testimonials">
+          {
+            filters.map((f) => (
+              <a
+                href={`?filter=${f}`}
+                aria-current={f === filter ? 'page' : undefined}
+                class={`rounded-lg px-4 py-2 font-medium capitalize ${
+                  f === filter
+                    ? 'bg-brand-primary-600 text-white'
+                    : 'bg-white border border-neutral-200 text-neutral-700 hover:bg-neutral-100'
+                }`}
+              >
+                {f} ({tabCounts[f]})
+              </a>
+            ))
+          }
+        </nav>
+
+        <div id="status" role="status" class="hidden mb-6 rounded-lg bg-red-50 p-4 text-red-800"></div>
+
+        {results.length === 0 && <p class="text-neutral-600">Nothing here.</p>}
+
+        <ul class="space-y-4">
+          {
+            results.map((t) => (
+              <li data-id={t.id} class="bg-white rounded-xl border border-neutral-200 p-6">
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                  <div>
+                    <span class="font-semibold text-neutral-900">{t.name}</span>
+                    {t.role && <span class="text-neutral-600"> · {t.role}</span>}
+                  </div>
+                  <time class="text-sm text-neutral-500">{t.created_at} UTC</time>
+                </div>
+                <p class="text-neutral-800 whitespace-pre-wrap mb-4">{t.body}</p>
+                <div class="flex flex-wrap items-center gap-3">
+                  <span
+                    class={`text-sm rounded-full px-3 py-1 ${
+                      t.can_publish ? 'bg-green-50 text-green-800' : 'bg-amber-50 text-amber-800'
+                    }`}
+                  >
+                    {t.can_publish ? 'OK to publish' : 'No publish permission'}
+                  </span>
+                  <span class="flex-grow" />
+                  <button
+                    data-action="toggle"
+                    data-approved={t.approved ? '1' : '0'}
+                    class="rounded-lg bg-brand-primary-600 px-4 py-2 text-white font-medium hover:bg-brand-primary-700 disabled:opacity-60"
+                  >
+                    {t.approved ? 'Unapprove' : 'Approve'}
+                  </button>
+                  <button
+                    data-action="delete"
+                    class="rounded-lg border border-red-300 px-4 py-2 text-red-700 font-medium hover:bg-red-50 disabled:opacity-60"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const status = document.getElementById('status') as HTMLElement;
+
+    document.addEventListener('click', async (e) => {
+      const button = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-action]');
+      const item = button?.closest<HTMLElement>('li[data-id]');
+      if (!button || !item) return;
+
+      const id = item.dataset.id;
+      const isDelete = button.dataset.action === 'delete';
+      if (isDelete && !confirm('Delete this testimonial permanently?')) return;
+
+      button.disabled = true;
+      try {
+        const res = await fetch(`/api/admin/testimonials/${id}`, {
+          method: isDelete ? 'DELETE' : 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: isDelete ? undefined : JSON.stringify({ approved: button.dataset.approved !== '1' }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        location.reload();
+      } catch {
+        status.textContent = 'That did not work. Reload the page and try again.';
+        status.classList.remove('hidden');
+        button.disabled = false;
+      }
+    });
+  </script>
+</BaseLayout>
