@@ -2,6 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import BookingButton from '../components/BookingButton.astro';
+import Testimonials from '../components/Testimonials.astro';
+import { getPublishedTestimonials } from '../lib/testimonials';
+
+export const prerender = false;
+
+const testimonials = await getPublishedTestimonials(Astro.locals.runtime.env.promptworkshop, {
+  limit: 3,
+});
 ---
 
 <BaseLayout
@@ -196,6 +204,8 @@ import BookingButton from '../components/BookingButton.astro';
       </div>
     </div>
   </section>
+
+  <Testimonials testimonials={testimonials} class="bg-neutral-50" />
 
   <!-- Final CTA Section -->
   <section class="relative section-padding overflow-hidden bg-gradient-to-br from-brand-accent-500 via-brand-accent-600 to-brand-primary-600">
